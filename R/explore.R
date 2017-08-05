@@ -78,6 +78,7 @@ explore = function(data) {
                          "Bar chart" = "bar"
                        )
                      ),
+                     uiOutput("uiXSlider"),
                      uiOutput("ui1D")
                    ),
                    mainPanel(plotOutput("OneDplot"))
@@ -98,6 +99,8 @@ explore = function(data) {
                        c("Scatter" = "scat",
                          "Box plot" = "box")
                      ),
+                     uiOutput("uiXSlider2D"),
+                     uiOutput("uiYSlider2D"),
                      uiOutput("ui2D")
                    ),
                    mainPanel(ggiraphOutput("TwoDplot"))
@@ -152,10 +155,12 @@ explore = function(data) {
       })
 
       output$OneDplot <- renderPlot({
+        limX = input$histSlider
         if (input$plotType1D == 'hist') {
           ggplot(data, aes_string(x = input$selVar,
                                   fill = '..count..')) +
             geom_histogram(bins = input$nBins) +
+            lims(x = limX) +
             theme(legend.position = 'None')
           # hist(data[,input$selVar], breaks = input$nBins)
         } else if (input$plotType1D == 'dens') {
@@ -163,6 +168,7 @@ explore = function(data) {
             geom_density(bw = input$bw,
                          fill = "blue",
                          alpha = 0.5) +
+            lims(x = limX) +
             theme(legend.position = 'None')
           # plot(density(data[,input$selVar], bw = input$bw))
         } else if (input$plotType1D == 'bar') {
@@ -174,6 +180,8 @@ explore = function(data) {
       })
 
       output$TwoDplot <- renderggiraph({
+        limX = input$sliderX2D
+        limY = input$sliderY2D
         if (input$plotType2D == 'scat') {
           p = ggplot(data,
                      aes_string(
@@ -181,19 +189,56 @@ explore = function(data) {
                        y = input$selVar2,
                        tooltip = 1:nrow(data)
                      )) +
+            lims(x = limX, y = limY) +
             geom_point_interactive()
           ggiraph(code = print(p))
         } else if (input$plotType2D == 'box') {
+          x = as.factor(get(input$selVar1, pos = data))
+          y = get(input$selVar2, pos = data)
+          z = 1:nrow(data)
           p2 = ggplot(data,
-                      aes_string(
-                        x = input$selVar1,
-                        y = input$selVar2,
-                        fill = input$selVar1
-                      )) +
+                      aes(x = x, y = y, tooltip = z,
+                          fill = x
+                          )) +
+            lims(y = limY) +
             geom_boxplot_interactive() +
             theme(legend.position = 'None')
           ggiraph(code = print(p2))
         }
+      })
+
+      output$uiXSlider <- renderUI({
+        x = get(input$selVar, pos = data)
+        prettyX = pretty(x, 10)
+        if(input$plotType1D != 'box') {
+          sliderInput("histSlider",
+                      label = "horizontal axis range",
+                      min = min(prettyX),
+                      max = max(prettyX),
+                      value = c(min(prettyX),max(prettyX)))
+        }
+      })
+
+      output$uiXSlider2D <- renderUI({
+        x = get(input$selVar1, pos = data)
+        prettyX = pretty(x, 10)
+        if(input$plotType2D == 'scat') {
+          sliderInput("sliderX2D",
+                      label = "horizontal axis range",
+                      min = min(prettyX),
+                      max = max(prettyX),
+                      value = c(min(prettyX),max(prettyX)))
+        }
+      })
+
+      output$uiYSlider2D <- renderUI({
+        y = get(input$selVar2, pos = data)
+        prettyY = pretty(y, 10)
+        sliderInput("sliderY2D",
+                    label = "vertical axis range",
+                    min = min(prettyY),
+                    max = max(prettyY),
+                    value = c(min(prettyY),max(prettyY)))
       })
 
       output$ui1D <- renderUI({
