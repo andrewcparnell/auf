@@ -1,11 +1,15 @@
 Package: auf
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Andrew's Useful Functions
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person("Andrew","Parnell", email = "andrew.parnell@ucd.ie", role =
+    c("aut", "cre"))
+Description: Some useful functions which possibly only I find useful. Main functions are packages(...) which loads in packages in a list and installs those not available, startScript which sets working directory and loads packages, and explore which loads a shiny app for basic exploration of a data frame
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Depends: ggplot2
+Imports: ggiraph,
+    shiny,
+    DT
+RoxygenNote: 6.0.1

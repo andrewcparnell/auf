@@ -1,10 +1,8 @@
 #' Function to load in packages and install those which are missing
 #'
-#'
-#'
 #' @param ... A character vector of packages to be loaded/installed
 #'
-#' @return
+#' @return A list of the currently installed packages
 #' @export
 #'
 #' @examples
