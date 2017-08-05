@@ -16,5 +16,7 @@ A list of the currently installed packages
 Function to load in packages and install those which are missing
 }
 \examples{
+\dontrun{
 packages(c('Bchron', 'simmr'))
+}
 }

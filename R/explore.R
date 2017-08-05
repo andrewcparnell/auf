@@ -8,6 +8,13 @@
 #' @import ggplot2
 #' @import shiny
 #' @import ggiraph
+#' @importFrom stats "aggregate" "bw.nrd0" "cor" "median" "sd"
+#'
+#' @examples
+#' \dontrun{
+#' explore(iris)
+#' }
+#'
 explore = function(data) {
   ggplot2::theme_set(ggplot2::theme_minimal())
 

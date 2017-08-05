@@ -5,8 +5,12 @@
 #' @return A list of the currently installed packages
 #' @export
 #'
+#' @importFrom utils "install.packages" "installed.packages"
+#'
 #' @examples
+#' \dontrun{
 #' packages(c('Bchron', 'simmr'))
+#' }
 packages = function(...) {
 
   # Get the packages

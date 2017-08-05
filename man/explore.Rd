@@ -15,3 +15,9 @@ Opens a shiny app
 \description{
 Explore a data set using shiny
 }
+\examples{
+\dontrun{
+explore(iris)
+}
+
+}

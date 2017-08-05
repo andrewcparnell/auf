@@ -18,5 +18,7 @@ Nothing, just a
 Function to set working directory and load in packages at the start of a script
 }
 \examples{
+\dontrun{
 startScript(wd = '~', packages = c('Bchron', 'simmr'))
+}
 }

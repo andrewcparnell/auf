@@ -7,7 +7,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' startScript(wd = '~', packages = c('Bchron', 'simmr'))
+#' }
 startScript = function(wd = '~',
                        packages = c('tidyverse',
                                     'devtools',
