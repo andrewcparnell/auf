@@ -7,7 +7,7 @@
 packages(...)
 }
 \arguments{
-\item{...}{A character vector of packages to be loaded/installed}
+\item{...}{A set of packages to be loaded/installed, comma delimited}
 }
 \value{
 A list of the currently installed packages
@@ -17,6 +17,6 @@ Function to load in packages and install those which are missing
 }
 \examples{
 \dontrun{
-packages(c('Bchron', 'simmr'))
+packages('Bchron', 'simmr')
 }
 }

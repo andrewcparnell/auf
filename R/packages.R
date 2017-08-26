@@ -1,6 +1,6 @@
 #' Function to load in packages and install those which are missing
 #'
-#' @param ... A character vector of packages to be loaded/installed
+#' @param ... A set of packages to be loaded/installed, comma delimited
 #'
 #' @return A list of the currently installed packages
 #' @export
@@ -9,12 +9,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' packages(c('Bchron', 'simmr'))
+#' packages('Bchron', 'simmr')
 #' }
 packages = function(...) {
 
   # Get the packages
-  pkgs = as.vector(unlist(...))
+  pkgs = as.vector(unlist(list(...)))
 
   # Error checking
   stopifnot(all(is.character(pkgs)))
