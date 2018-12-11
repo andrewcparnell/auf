@@ -2,7 +2,6 @@
 
 export(explore)
 export(packages)
-export(scholarCloud)
 export(startScript)
 import(ggiraph)
 import(ggplot2)

@@ -10,10 +10,5 @@ Encoding: UTF-8
 LazyData: true
 Depends: ggplot2
 Imports: ggiraph,
-    shiny,
-    DT,
-    tm,
-    wordcloud,
-    memoise,
-    scholar
-RoxygenNote: 6.0.1
+    shiny
+RoxygenNote: 6.1.1
