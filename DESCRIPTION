@@ -2,7 +2,7 @@ Package: auf
 Type: Package
 Title: Andrew's Useful Functions
 Version: 0.1.0
-Authors@R: person("Andrew","Parnell", email = "andrew.parnell@ucd.ie", role =
+Authors@R: person("Andrew","Parnell", email = "andrew.parnell@mu.ie", role =
     c("aut", "cre"))
 Description: Some useful functions which possibly only I find useful. Main functions are packages which loads in packages in a list and installs those not available, startScript which sets working directory and loads packages, and explore which loads a shiny app for basic exploration of a data frame.
 License: GPL-3
